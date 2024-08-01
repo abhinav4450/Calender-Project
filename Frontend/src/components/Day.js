@@ -14,18 +14,19 @@ export default function Day({ day, rowIdx }) {
     setSelectedEvent,
   } = useContext(GlobalContext);
   const url = "https://calender-project-backend.onrender.com";
+  const FrontUrl="https://calender-project-frontend.onrender.com";
 
 // API to delete the selected event by id
   async function deleteEvent(id) {
     try {
-      console.log("dayadadadada", id);
+      console.log("data", id);
       const response = await axios.delete(
         `${url}/deleteById/${id}`
       );
 
       const data = response.data[0];
       console.log("Deleted Event Data", data);
-      window.location.href = `${url}/calender`;
+      window.location.href = `${FrontUrl}/calender`;
     } catch (error) {
       console.error("Error deleting event:", error);
     }
