@@ -26,7 +26,7 @@ export default function Day({ day, rowIdx }) {
 
       const data = response.data[0];
       console.log("Deleted Event Data", data);
-      window.location.reload();
+      window.location.href = `https://calender-project-frontend.onrender.com/calender`;
     } catch (error) {
       console.error("Error deleting event:", error);
     }
