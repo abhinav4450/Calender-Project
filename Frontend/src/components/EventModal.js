@@ -21,7 +21,7 @@ export default function EventModal() {
   const [etime, setEtime] = useState(selectedEvent ? selectedEvent.etime : "");
   const [notes, setNotes] = useState(selectedEvent ? selectedEvent.notes : "");
   const [duration, setDuration] = useState("");
-  const url="http://localhost:5500";
+  const url="https://calender-project-backend.onrender.com";
 
   useEffect(() => {
     if (stime && etime) {
