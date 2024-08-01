@@ -13,7 +13,7 @@ export default function Day({ day, rowIdx }) {
     filteredEvents,
     setSelectedEvent,
   } = useContext(GlobalContext);
-  const url = "http://localhost:5500";
+  const url = "https://calender-project-backend.onrender.com";
 
 // API to delete the selected event by id
   async function deleteEvent(id) {
