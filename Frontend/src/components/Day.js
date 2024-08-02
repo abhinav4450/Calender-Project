@@ -7,6 +7,7 @@ export default function Day({ day, rowIdx }) {
   const [dayEvents, setDayEvents] = useState([]);
   const [selectedEventData, setSelectedEventData] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
+  const [showDetails, setShowDetails] = useState(false);
   const {
     setDaySelected,
     setShowEventModal,
@@ -110,6 +111,107 @@ export default function Day({ day, rowIdx }) {
             >
               Delete
             </button>
+                <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowDetails(!showDetails);
+              }}
+              className="text-blue-700 hover:text-white border z-50 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-900"
+            >
+              Show
+            </button>
+            {showDetails && (
+              <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
+              <form
+                className="bg-white rounded-lg shadow-2xl w-1/4"              >
+                <header className="bg-gray-100 px-4 py-2 flex justify-between items-center">
+                  <span className="material-icons-outlined text-gray-400">drag_handle</span>
+                  <div>
+                    <button type="button" onClick={() => setShowDetails(false)}>
+                      <span className="material-icons-outlined text-gray-400">close</span>
+                    </button>
+                  </div>
+                </header>
+                <div className="p-3">
+                  <div className="grid grid-cols-5 gap-y-7 items-end">
+                    <div></div>
+                    <input
+                      type="text"
+                      name="eventTitle"
+                      placeholder="Event title"
+                      value={selectedEventData.eventTitle}
+                      readOnly
+                      className="col-span-4 pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                    />
+                    <span className="material-icons-outlined text-gray-400 col-span-1">schedule</span>
+                    <p className="col-span-4">{day.format("dddd, MMMM DD")}</p>
+                    <span className="material-icons-outlined text-gray-400 col-span-1">segment</span>
+                    <input
+                      type="text"
+                      name="description"
+                      placeholder="Add a description"
+                      value={selectedEventData.description}
+                      readOnly
+                      className="col-span-4 pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                    />
+                    <span className="material-icons-outlined text-gray-400 col-span-1">people</span>
+                    <input
+                      type="text"
+                      name="listOfParticipants"
+                      placeholder="List of Participants"
+                      value={selectedEventData.listOfParticipants}
+                      readOnly
+                      className="col-span-4 pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                    />
+                    <span className="material-icons-outlined text-gray-400 col-span-1">access_time</span>
+                    <select
+                      name="stime"
+                      value={selectedEventData.stime}
+                      readOnly
+                      className="col-span-4 pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                    >
+                      {Array.from({ length: 24 }, (_, i) => (
+                        <option key={i} value={i}>
+                          {i.toString().padStart(2, "0")}:00
+                        </option>
+                      ))}
+                    </select>
+                    <span className="material-icons-outlined text-gray-400 col-span-1">access_time</span>
+                    <select
+                      name="etime"
+                      value={selectedEventData.etime}
+                      readOnly
+                      className="col-span-4 pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                    >
+                      {Array.from({ length: 24 }, (_, i) => (
+                        <option key={i} value={i}>
+                          {i.toString().padStart(2, "0")}:00
+                        </option>
+                      ))}
+                    </select>
+                    <span className="material-icons-outlined text-gray-400 col-span-1">timelapse</span>
+                    <input
+                      type="text"
+                      name="duration"
+                      placeholder="Duration"
+                      value={selectedEventData.duration}
+                      readOnly
+                      className="col-span-4 pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                    />
+                    <span className="material-icons-outlined text-gray-400 col-span-1">notes</span>
+                    <input
+                      type="text"
+                      name="notes"
+                      placeholder="Notes"
+                      value={selectedEventData.notes}
+                      readOnly
+                      className="col-span-4 pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                    />
+                  </div>
+                </div>
+              </form>
+              </div>
+            )}
           </div>
         )}
       </div>
